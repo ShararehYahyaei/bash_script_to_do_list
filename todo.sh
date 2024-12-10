@@ -11,7 +11,8 @@ show_nenu(){
     echo "4.SHOW DONE TASKS"
     echo "5.SHOW NOT DONE TASKS"
     echo "6.REMOVE TASK"
-    echo "7.EXIT"  
+    echo "7.SEARCH"
+    echo "8.EXIT"
 }
 
 
@@ -44,14 +45,9 @@ mark_done(){
     sed -i "$task_number s/to do task is/done/" "todolist.txt"
     echo "marked as done"
     else
-    echo "task already done"
+    echo "not found"
     fi
 }
- 
-
- 
-
-
 
 show_all_donetasks(){
     echo "DONE TASKS"
@@ -65,8 +61,8 @@ show_all_notdonetasks(){
 }
 
 remove_task(){
-    list_tasks
 
+    list_tasks
     read -p "which one do you like to remove id:" remove_number
   if [[ -n "$remove_number" ]]; then
   sed -i "${remove_number}d" "todolist.txt"
@@ -75,7 +71,13 @@ remove_task(){
  echo "TASK NOT FOUND"
  fi
 }
-
+search_task(){
+  list_tasks
+ read -p "PLEASE ENTER YOUR SEARCH WORD: " word_key
+   if [[ -f todolist.txt ]]; then
+     grep -i "$word_key" "todolist.txt" || echo "No matching tasks found."
+   fi
+}
 
 
 
@@ -108,6 +110,10 @@ elif [[ "$request" -eq 6 ]]; then
 remove_task
 break
 elif [[ "$request" -eq 7 ]]; then
+  search_task
+  break
+
+elif [[ "$request" -eq 8 ]]; then
 
 exit 0
 

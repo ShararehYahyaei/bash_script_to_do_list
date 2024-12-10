@@ -1,4 +1,3 @@
-done :foroshgah
-done :dusting
-done :boodsvhaped doen
-done :moving
+to do task is :cleaning
+to do task is :dusting
+to do task is :vacuum
